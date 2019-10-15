@@ -3,7 +3,7 @@ import React from 'react'
 export default function ChoiceCard(props) {
 
   const DEFAULT_IMG =
-  "http://www.thewateringhole.co.uk/wp-content/uploads/2012/12/play.png";
+  "https://www.stickpng.com/assets/images/580b57fcd9996e24bc43c4f9.png";
   
   const won = props.title === props.previousWinner;
   let className;

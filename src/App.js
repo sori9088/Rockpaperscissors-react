@@ -1,67 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
-
+import { CHOICES, getRoundOutcome } from "./utils";
 import React, { useState } from "react";
 import ChoiceCard from "./components/ChoiceCard";
+import ChoiceBtn from "./components/ChoiceButtons";
 import Navbar from './components/Navbar';
-
-
-export const getRoundOutcome = userChoice => {
-  const computerChoice = getRandomChoice().name;
-  let result;
-
-  if(userChoice === "rock"){
-    result = computerChoice === "scissors" ? "Victory!" : "Defeat!";
-  }
-  if(userChoice === "paper"){
-    result = computerChoice === "rock" ? "Victory!" : "Defeat!";
-  }
-  if(userChoice === "scissors"){
-    result = computerChoice === "paper" ? "Victory!" : "Defeat!";
-  }
-  if(userChoice === computerChoice) result = "Tie game!";
-  return [result, computerChoice];
-
-};
-
-export const getRandomChoice = () => {
-  let choiceNames = Object.keys(CHOICES);
-  let randomIndex = Math.floor(Math.random()*3);
-  let choiceName = choiceNames[randomIndex];
-  return CHOICES[choiceName];
-};
-
-export const CHOICES = {
-  scissors: {
-    name: "scissors",
-    url: "http://www.pngmart.com/files/1/Scissors-PNG-Pic.png"
-  },
-  paper: {
-    name: "paper",
-    url: "http://pngimagesfree.com/Paper/Thumb/blank-note-paper-free-clipa.png"
-  },
-  rock: {
-    name: "rock",
-    url:
-      "https://opengameart.org/sites/default/files/forum-attachments/very%20simple%20rock_0.png"
-  }
-};
 
 
 
 function App() {
 
-  const [prompt, setGamePrompt] = useState("1, 2, 3, SHOOT! ");
-
+  const [prompt, setGamePrompt] = useState(" Start! ");
   const [playerChoice, setPlayerChoice] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
   const [previousWinner, setPreviousWinner] = useState(null);
+  const [gameHistory, setGameHistory] = useState([]);
 
-
-  const onPlayerChoice = playerChoice => {
+  const onPlayerChoice = playerChoice => { //playerChoice 는 락,페이퍼, 시져 중에 하나
     const [result, compChoice] = getRoundOutcome(playerChoice);
     const newUserChoice = CHOICES[playerChoice];
     const newComputerChoice = CHOICES[compChoice];
+    let className;
 
     setPlayerChoice(newUserChoice);
     setComputerChoice(newComputerChoice);
@@ -71,11 +30,18 @@ function App() {
 
     if( result == "Victory!") {
       setPreviousWinner("You");
+      className = "victory"
     } else if (result == "Defeat!"){
       setPreviousWinner("Computer");
+      className = "defeat"
     } else{
       setPreviousWinner("Tie");
+      className = "tie"
     }
+    setGamePrompt(result);
+    
+    gameHistory.push(result);
+    setGameHistory(gameHistory);
   };
 
 
@@ -91,20 +57,12 @@ function App() {
     <ChoiceCard 
       title = 'Computer'
       previousWinner={previousWinner}
-      imgURL = {computerChoice && computerChoice.url} />
+      imgURL = {computerChoice && computerChoice.url} /> 
+{/* if computerChoice exist, we call the value of computerChoice.url  */}
+     
+      <h1 className={`py-4 ${prompt ==='Tie game!'?'tie':prompt ==='Defeat!'?'defeat':'victory'}`}>{prompt}</h1>
 
-      <h1>{prompt}</h1>
-
-      <button className="btn btn-warning btn-lg" onClick={() => onPlayerChoice("rock")}>
-        Rock
-        </button>
-        <button className="btn btn-warning btn-lg" onClick={() => onPlayerChoice("paper")}>
-        Paper
-        </button>
-        <button className="btn btn-warning btn-lg" onClick={() => onPlayerChoice("scissors")}>
-        Scissors
-        </button>
-
+    <ChoiceBtn onPlayerChoice={onPlayerChoice} />
     
     <ChoiceCard 
       title = 'You' 
@@ -112,9 +70,18 @@ function App() {
       imgURL = {playerChoice && playerChoice.url} />
 
       </div>
+      <div className="col-md-4 themed-grid-col">
+        <h3>History</h3>
+          {gameHistory.map(result => {
+            return <h5>{result}</h5>;
+          })}
+
+      </div>
+
     </div>
   </div>
   </div>
+
   );
 }
 

@@ -1,31 +1,30 @@
 import React from 'react';
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button} from 'react-bootstrap';
+import { Navbar, Nav, Form, FormControl, InputGroup} from 'react-bootstrap';
 
 
 class Navigation extends React.Component {
   render() {
     return (
-  <Navbar bg="transparent" expand="lg">
-  <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+  <Nav className="justify-content-end">
+  <Navbar bg="transparent" variant="dark" className="mr-auto navbar-right">
+  <Navbar.Brand href="#">Rock Scissiors Paper</Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
-    <Nav className="mr-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#link">Link</Nav.Link>
-      <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-      </NavDropdown>
-    </Nav>
-    <Form inline>
-      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button variant="outline-success">Search</Button>
-    </Form>
+  <Form inline>
+    <InputGroup>
+      <InputGroup.Prepend>
+        <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+      </InputGroup.Prepend>
+      <FormControl
+        placeholder="Username"
+        aria-label="Username"
+        aria-describedby="basic-addon1"
+      />
+    </InputGroup>
+  </Form>
   </Navbar.Collapse>
 </Navbar>
+</Nav>
     )
   }
 }

@@ -31,7 +31,7 @@ The following **optional** features are implemented:
 
 * [ ] User can only play the game once they've pressed a button titled Start.
 * [ ] User can sign in and have their name attributed to the victory.
-* [ ] User can see the prompt colored correctly based on the outcome of the game. If player has won, "Victory!" is green. If player has loss, "Defeat!" is red. If the result is a tie, the text remains black.
+* [x] User can see the prompt colored correctly based on the outcome of the game. If player has won, "Victory!" is green. If player has loss, "Defeat!" is red. If the result is a tie, the text remains black.
 * [ ] User sees "flawless" victory behavior in the game. If the user/computer wins the first 3 rounds in a row, they've achieve a flawless victory.
 
 The following **additional** features are implemented:

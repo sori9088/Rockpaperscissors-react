@@ -2,7 +2,8 @@
   flex: 1;
   min-height: 100vh;
   text-align: center;
-  background-color: #e9ebee;
+  background-color: #2b2b2b;
+  color: white;
 }
 .choice-card {
   flex: 1;
@@ -28,22 +29,34 @@ h1 {
   font-size: 50px;
 }
 .winner {
-  color: green;
-  border: 10px solid green;
+  color: rgb(116, 105, 221);
+  border: 10px solid rgb(116, 105, 221);
 }
 .loser {
-  color: red;
-  border: 10px solid red;
+  color: rgb(236, 104, 104);
+  border: 10px solid rgb(236, 104, 104);
 }
 
 .Tie {
-  color: black;
-  border: 10px solid black;
+  color: rgb(165, 64, 179);
+  border: 10px solid rgb(165, 64, 179);
 }
 nav {
-  background-color : white;
+  background-color : #2b2b2b;
 }
 
 .btn {
   margin: 20px;
+}
+
+.victory {
+  color: rgb(116, 105, 221);
+}
+
+.tie {
+  color: rgb(165, 64, 179);
+}
+
+.defeat {
+  color: rgb(236, 104, 104);
 }
